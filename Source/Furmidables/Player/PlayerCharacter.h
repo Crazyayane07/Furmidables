@@ -8,6 +8,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UDamageHandlerComp;
 
 UCLASS()
 class FURMIDABLES_API APlayerCharacter : public ACharacter
@@ -29,6 +30,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UCameraComponent* FollowingCamera;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UDamageHandlerComp* DamageHandlerComp;
 
 protected:
 	// Called when the game starts or when spawned

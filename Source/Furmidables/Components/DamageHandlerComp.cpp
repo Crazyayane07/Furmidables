@@ -10,9 +10,7 @@ UDamageHandlerComp::UDamageHandlerComp()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
 
-	// ...
 }
-
 
 // Called when the game starts
 void UDamageHandlerComp::BeginPlay()
@@ -20,6 +18,8 @@ void UDamageHandlerComp::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+
+	CurrentHealth = MaxHealth;
 
 	AActor* Owner = GetOwner();
 	if (Owner) 
@@ -36,9 +36,10 @@ void UDamageHandlerComp::TakeDamage(AActor* DamagedActor, float Damage, const cl
 	if (Damage <= 0)
 		return;
 
-	Health -= Damage;
+	CurrentHealth -= Damage;
 
-	UE_LOG(LogTemp, Log, TEXT("Health = %i"), Health);
+	OnChangeHealth.Broadcast(CurrentHealth, MaxHealth);
+	UE_LOG(LogTemp, Log, TEXT("Health = %i"), MaxHealth);
 }
 
 // Called every frame
@@ -47,5 +48,10 @@ void UDamageHandlerComp::TickComponent(float DeltaTime, ELevelTick TickType, FAc
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+int UDamageHandlerComp::GetCurrentHealth()
+{
+	return CurrentHealth;
 }
 

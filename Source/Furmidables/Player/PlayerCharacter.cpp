@@ -5,6 +5,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Furmidables/Components/DamageHandlerComp.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -46,6 +47,8 @@ void APlayerCharacter::CreateAndSetUpAdditionalComponents()
 	FollowingCamera->SetupAttachment(CameraBoom);
 
 	FollowingCamera->bUsePawnControlRotation = false;
+
+	DamageHandlerComp = CreateDefaultSubobject<UDamageHandlerComp>(TEXT("DamageHandlerComp"));
 }
 
 // Called every frame

@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "DamageHandlerComp.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FChangeHealth, int, CurrentHealth, int, MaxHealth);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FURMIDABLES_API UDamageHandlerComp : public UActorComponent
@@ -19,8 +20,13 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	int GetCurrentHealth();
+
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FChangeHealth OnChangeHealth;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
-	int Health = 100;
+	int MaxHealth = 100;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
 	bool bIsDamageable = true;
@@ -31,4 +37,6 @@ protected:
 
 	UFUNCTION()
 	void TakeDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
+	int CurrentHealth;
 };
