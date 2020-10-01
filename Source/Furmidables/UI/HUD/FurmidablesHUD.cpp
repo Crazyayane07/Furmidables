@@ -2,12 +2,15 @@
 
 
 #include "FurmidablesHUD.h"
-#include "Furmidables/UI/HUD/PlayerHealthbar.h"
+#include "Furmidables/UI/HealthbarWidget.h"
 
 void AFurmidablesHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UPlayerHealthbar* PlayerHealthbar = CreateWidget<UPlayerHealthbar>(GetOwningPlayerController(), PlayerHealthbarClass);
-	PlayerHealthbar->AddToViewport();
+	UHealthbarWidget* PlayerHealthbarWidget = CreateWidget<UHealthbarWidget>(GetOwningPlayerController(), PlayerHealthbarClass);
+	PlayerHealthbarWidget->AddToViewport();
+
+	UHealthbarWidget* StrongholdHealthbarWidget = CreateWidget<UHealthbarWidget>(GetOwningPlayerController(), StrongholdHealthbarClass);
+	StrongholdHealthbarWidget->AddToViewport();
 }

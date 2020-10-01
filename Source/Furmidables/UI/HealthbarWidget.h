@@ -4,16 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "PlayerHealthbar.generated.h"
+#include "HealthbarWidget.generated.h"
 
+/**
+ * 
+ */
 UCLASS()
-class FURMIDABLES_API UPlayerHealthbar : public UUserWidget
+class FURMIDABLES_API UHealthbarWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
 public:
 
 	void NativeConstruct() override;
+
+	virtual void BindForEventToUpdateHealthbar() {};
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnChangeHealth(int CurrentHealth, int MaxHealth);

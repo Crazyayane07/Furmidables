@@ -4,17 +4,23 @@
 
 #include "CoreMinimal.h"
 #include "Furmidables/UI/HealthbarWidget.h"
-#include "PlayerHealthbarWidget.generated.h"
+#include "StrongholdHealthbarWidget.generated.h"
 
 /**
  * 
  */
+
+class AStronghold;
+
 UCLASS()
-class FURMIDABLES_API UPlayerHealthbarWidget : public UHealthbarWidget
+class FURMIDABLES_API UStrongholdHealthbarWidget : public UHealthbarWidget
 {
 	GENERATED_BODY()
 
 public:
 
 	virtual void BindForEventToUpdateHealthbar() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SetUp")
+	TSubclassOf<class AActor> StrongholdClass;
 };

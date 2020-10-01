@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+class UHealthbarWidget;
+
 UCLASS()
 class FURMIDABLES_API AFurmidablesHUD : public AHUD
 {
@@ -18,5 +21,8 @@ public:
 	void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
-	TSubclassOf<class UPlayerHealthbar> PlayerHealthbarClass;
+	TSubclassOf<class UHealthbarWidget> PlayerHealthbarClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<class UHealthbarWidget> StrongholdHealthbarClass;
 };
